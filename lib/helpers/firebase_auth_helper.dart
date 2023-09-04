@@ -55,10 +55,11 @@ class FireBaseAuthHelper with FirebaseAuthMixin {
           .createUserWithEmailAndPassword(email: Email, password: Password);
 
       User? user = userCredential.user;
-      print("---------------------");
-      print(user);
-      print("---------------------");
+
       data['user'] = user;
+      print("-----------------------");
+      print(user);
+      print("-----------------------");
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case "admin-restricted-operation":
@@ -75,7 +76,6 @@ class FireBaseAuthHelper with FirebaseAuthMixin {
           data['msg'] = "";
       }
     }
-    print(data);
     return data;
   }
 
@@ -83,6 +83,9 @@ class FireBaseAuthHelper with FirebaseAuthMixin {
   Future<Map<String, dynamic>> signInWithEmailAndPassword(
       {required String Email, required String Password}) async {
     Map<String, dynamic> data = {};
+
+    // String? token = await firebaseMessaging.getToken();
+
     try {
       UserCredential userCredential = await firebaseAuth
           .signInWithEmailAndPassword(email: Email, password: Password);
@@ -104,7 +107,9 @@ class FireBaseAuthHelper with FirebaseAuthMixin {
           data['msg'] = "";
       }
     }
+    print("=========");
     print(data);
+    print("=========");
     return data;
   }
 
