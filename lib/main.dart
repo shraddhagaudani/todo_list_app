@@ -8,6 +8,7 @@ import 'package:todo_list_app/views/screens/home_page.dart';
 import 'package:todo_list_app/views/screens/intro_screen.dart';
 import 'package:todo_list_app/views/screens/list_page.dart';
 import 'package:todo_list_app/views/screens/login_page.dart';
+import 'package:todo_list_app/views/screens/setting_page.dart';
 import 'package:todo_list_app/views/screens/splash_screen.dart';
 
 import 'firebase_options.dart';
@@ -21,8 +22,11 @@ void main() async{
   );
   runApp(
     GetMaterialApp(
+
       debugShowCheckedModeBanner: false,
       initialRoute: '/splash_screen',
+      theme: ThemeData.light(useMaterial3: true),
+      darkTheme: ThemeData.dark(useMaterial3: true),
       getPages: [
         GetPage(name: '/splash_screen', page: () => const Splash_screen()),
         GetPage(name: '/intro_screen', page: () => const Intro_screen()),
@@ -30,6 +34,7 @@ void main() async{
         GetPage(name: '/home_page', page: () => const Home_page()),
         GetPage(name: '/list_page', page: () => const List_page()),
         GetPage(name: '/calender_page', page: () => const Calender_page()),
+        GetPage(name: '/setting_page', page: ()=>const Setting_page()),
       ],
     ),
   );
