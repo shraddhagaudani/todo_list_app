@@ -23,7 +23,7 @@ class _Home_pageState extends State<Home_page> {
           return Column(
             children: [
               Container(
-                height: 129,
+                height: 135,
                 width: 800,
                 color: const Color(0xFF724FD6),
                 child: Padding(
@@ -35,14 +35,6 @@ class _Home_pageState extends State<Home_page> {
                       ),
                       Row(
                         children: [
-                          IconButton(
-                            onPressed: () async {
-                              await FireBaseAuthHelper.fireBaseAuthHelper
-                                  .signOut();
-                              Get.offNamed('/login_page');
-                            },
-                            icon: const Icon(CupertinoIcons.power),
-                          ),
                           const Spacer(),
                           Container(
                             height: 56,
@@ -101,7 +93,7 @@ class _Home_pageState extends State<Home_page> {
                           ),
                         ),
                         Text(
-                          'Calandar',
+                          'Calendar',
                           style: TextStyle(
                             color: (themeController.themeModel.isdark)?Colors.white:Colors.black,
                             fontSize: 18,
@@ -233,6 +225,7 @@ class _Home_pageState extends State<Home_page> {
                 ),
               ),
             ],
+
           );
         },
       ),
