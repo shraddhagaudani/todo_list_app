@@ -205,7 +205,10 @@ class _Login_pageState extends State<Login_page> {
                             ),
                             GestureDetector(
                               onTap: () {
+
                                 ValidateAndSignIn();
+                                loginemailController.clear();
+                                loginpasswordController.clear();
                               },
                               child: Container(
                                 alignment: Alignment.center,
@@ -225,13 +228,7 @@ class _Login_pageState extends State<Login_page> {
                                 ),
                               ),
                             ),
-                            ElevatedButton(
-                                onPressed: () {
-                                  ValidateAndSignIn();
-                                  loginemailController.clear();
-                                  loginpasswordController.clear();
-                                },
-                                child: Text("log in")),
+
                             const SizedBox(
                               height: 10,
                             ),
