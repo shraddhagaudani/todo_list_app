@@ -7,6 +7,8 @@ import 'package:todo_list_app/helpers/db_helper.dart';
 import 'package:todo_list_app/helpers/firebase_auth_helper.dart';
 import 'package:todo_list_app/models/todo_model.dart';
 
+import '../../components/calender_omponents.dart';
+
 class Home_page extends StatefulWidget {
   const Home_page({super.key});
 
@@ -146,7 +148,7 @@ class _Home_pageState extends State<Home_page> {
                           ),
                           IconButton(
                             onPressed: () {
-                              Get.toNamed('/calender_page');
+                              // Get.toNamed('calender_component()');
                             },
                             icon: const Icon(
                               Icons.list_alt_rounded,
@@ -156,6 +158,7 @@ class _Home_pageState extends State<Home_page> {
                           const SizedBox(
                             width: 70,
                           ),
+
                           IconButton(
                             onPressed: () {},
                             icon: const Icon(
