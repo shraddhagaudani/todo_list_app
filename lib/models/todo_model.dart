@@ -1,3 +1,4 @@
+//for homepage project:
 class ToDoModel {
   int? projectid;
   String projectname;
@@ -18,5 +19,33 @@ class ToDoModel {
       projectlables: data['project_labels'],
       projectstatus: data['project_status'],
     );
+  }
+}
+
+// for list_component page:
+class ListMyTaskModel {
+  int? mytaskid;
+  String today;
+  String tomorrow;
+  String thisweek;
+  String highpriority;
+  String mediumpriority;
+
+  ListMyTaskModel({
+    this.mytaskid,
+    required this.today,
+    required this.tomorrow,
+    required this.thisweek,
+    required this.highpriority,
+    required this.mediumpriority,
+  });
+
+  factory ListMyTaskModel.fromMap({required Map<String, dynamic> data}) {
+    return ListMyTaskModel(
+        today: data['to_day'],
+        tomorrow: data['to_morrow'],
+        thisweek: data['this_week'],
+        highpriority: data['high_priority'],
+        mediumpriority: data['medium_priority']);
   }
 }
