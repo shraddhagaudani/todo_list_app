@@ -57,7 +57,7 @@ class _My_taskinformation_pageState extends State<My_taskinformation_page> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text(
-                                    "Total:",
+                                    "Today:",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 15),

@@ -51,3 +51,26 @@ class ListMyTaskModel {
     );
   }
 }
+
+// calander_components:
+class CalenderModel {
+  int? calenderid;
+  String date;
+  String time;
+  String scheduled;
+
+  CalenderModel(
+      {this.calenderid,
+      required this.date,
+      required this.time,
+      required this.scheduled});
+
+  factory CalenderModel.fromMap({required Map<String, dynamic> data}) {
+    return CalenderModel(
+      calenderid: data['calenderid'],
+      date: data['date'],
+      time: data['time'],
+      scheduled: data['scheduled'],
+    );
+  }
+}
