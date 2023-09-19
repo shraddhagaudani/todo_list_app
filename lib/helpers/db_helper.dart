@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:todo_list_app/models/todo_model.dart';
@@ -7,6 +8,7 @@ class DBHelper {
 
   static final DBHelper dbHelper = DBHelper._();
   Database? db;
+
 //for homePage:
   Future initDB() async {
     String dbLocation = await getDatabasesPath();
@@ -18,6 +20,12 @@ class DBHelper {
           "CREATE TABLE IF NOT EXISTS todo(project_id INTEGER PRIMARY KEY AUTOINCREMENT,project_name TEXT NOT NULL,project_labels TEXT NOT NULL,project_status TEXT NOT NULL);";
 
       await db.execute(query);
+
+      //for list_components:
+      String listmytaskquery =
+          "CREATE TABLE IF NOT EXISTS listmytask(mytask_id INTEGER PRIMARY KEY AUTOINCREMENT,to_day TEXT NOT NULL,to_morrow TEXT NOT NULL,this_week TEXT NOT NULL,high_priority TEXT NOT NULL,medium_priority TEXT NOT NULL);";
+
+      await db.execute(listmytaskquery);
     });
   }
 
@@ -45,14 +53,55 @@ class DBHelper {
     return todomodel;
   }
 
- Future<int> deleteProject({required int id})async{
+  Future<int> deleteProject({required int id}) async {
     await initDB();
-  String query =   "DELETE FROM todo WHERE project_id=?";
+    String query = "DELETE FROM todo WHERE project_id=?";
 
-  List args = [id];
+    List args = [id];
 
-  int res = await db!.rawDelete(query,args);
+    int res = await db!.rawDelete(query, args);
 
-  return res;
+    return res;
+  }
+
+  //for list_components:
+  Future<int> insertListMyTask({required ListMyTaskModel data}) async {
+    await initDB();
+
+    String query =
+        "INSERT INTO listmytask(to_day,to_morrow,this_week,high_priority,medium_priority)VALUES(?,?,?,?,?);";
+
+    List args = [
+      data.today,
+      data.tomorrow,
+      data.thisweek,
+      data.highpriority,
+      data.mediumpriority,
+    ];
+
+    int res = await db!.rawInsert(query, args);
+    return res;
+  }
+
+  Future<List<ListMyTaskModel>> fetchListMyTask() async {
+    await initDB();
+
+    String query = "SELECT *FROM listmytask";
+
+    List<Map<String, dynamic>> res = await db!.rawQuery(query);
+
+    List<ListMyTaskModel> listmytaskmodel = await res.map((e) => ListMyTaskModel.fromMap(data: e)).toList();
+
+    return listmytaskmodel;
+  }
+
+ Future<int> deleteListMyTask({required int id})async{
+    await initDB();
+
+   String query =  "DELETE FROM listmytask WHERE mytask_id=?";
+   List args = [id];
+
+   int res = await db!.rawDelete(query,args);
+   return res;
   }
 }

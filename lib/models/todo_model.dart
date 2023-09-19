@@ -42,10 +42,12 @@ class ListMyTaskModel {
 
   factory ListMyTaskModel.fromMap({required Map<String, dynamic> data}) {
     return ListMyTaskModel(
-        today: data['to_day'],
-        tomorrow: data['to_morrow'],
-        thisweek: data['this_week'],
-        highpriority: data['high_priority'],
-        mediumpriority: data['medium_priority']);
+      mytaskid: data['mytask_id'],
+      today: data['to_day'],
+      tomorrow: data['to_morrow'],
+      thisweek: data['this_week'],
+      highpriority: data['high_priority'],
+      mediumpriority: data['medium_priority'],
+    );
   }
 }

@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:todo_list_app/controllers/theme_controller.dart';
+import 'package:todo_list_app/helpers/db_helper.dart';
+import 'package:todo_list_app/models/todo_model.dart';
 
 class List_component extends StatefulWidget {
   const List_component({super.key});
@@ -14,6 +19,8 @@ class _List_componentState extends State<List_component> {
   String? highpriority;
   String? mediumpriority;
   GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
+
+  ThemeController themeController = Get.put(ThemeController());
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +91,7 @@ class _List_componentState extends State<List_component> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 30,
                       ),
                       Container(
@@ -100,7 +107,9 @@ class _List_componentState extends State<List_component> {
                           child: Row(
                             children: [
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.toNamed('/my_taskinformationpage');
+                                },
                                 icon: const Icon(
                                   Icons.other_houses,
                                   color: Colors.white,
@@ -112,14 +121,21 @@ class _List_componentState extends State<List_component> {
                       )
                     ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(16),
+                   Padding(
+                    padding: const EdgeInsets.all(16),
                     child: Row(
                       children: [
-                        Text(
-                          "My Task",
-                          style: TextStyle(color: Colors.white),
-                        )
+                        GestureDetector(
+                          onTap: (){
+                            setState(() {
+
+                            });
+                          },
+                          child: const Text(
+                            "My Task",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -133,12 +149,13 @@ class _List_componentState extends State<List_component> {
                   const SizedBox(
                     height: 25,
                   ),
-                  const Row(
+
+                   Row(
                     children: [
                       Text(
                         'Today',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: (themeController.themeModel.isdark)?Colors.white:Colors.black,
                           fontSize: 18,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
@@ -236,19 +253,19 @@ class _List_componentState extends State<List_component> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Row(
+                   Row(
                     children: [
                       Text(
                         'Tomorrow',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: (themeController.themeModel.isdark)?Colors.white:Colors.black,
                           fontSize: 18,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
                           height: 0,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                     ],
@@ -388,12 +405,12 @@ class _List_componentState extends State<List_component> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Row(
+                   Row(
                     children: [
                       Text(
                         'This week',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: (themeController.themeModel.isdark)?Colors.white:Colors.black,
                           fontSize: 18,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
@@ -457,12 +474,12 @@ class _List_componentState extends State<List_component> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Row(
+                   Row(
                     children: [
                       Text(
                         'High Priority',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: (themeController.themeModel.isdark)?Colors.white:Colors.black,
                           fontSize: 18,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
@@ -584,12 +601,12 @@ class _List_componentState extends State<List_component> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Row(
+                   Row(
                     children: [
                       Text(
                         'Medium Priority',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: (themeController.themeModel.isdark)?Colors.white:Colors.black,
                           fontSize: 18,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
@@ -730,12 +747,12 @@ class _List_componentState extends State<List_component> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Row(
+                   Row(
                     children: [
                       Text(
                         'Medium Priority',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: (themeController.themeModel.isdark)?Colors.white:Colors.black,
                           fontSize: 18,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
@@ -778,6 +795,59 @@ class _List_componentState extends State<List_component> {
                     ],
                   ),
                 ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStatePropertyAll(Colors.deepPurple.shade400),
+                ),
+                onPressed: () async{
+                  ListMyTaskModel listMyTaskModel = ListMyTaskModel(
+                      today: today!,
+                      tomorrow: tomorrow!,
+                      thisweek: thisweek!,
+                      highpriority: highpriority!,
+                      mediumpriority: mediumpriority!);
+
+                  int res = await DBHelper.dbHelper
+                      .insertListMyTask(data: listMyTaskModel);
+
+                  if (res >= 1) {
+                    Get.snackbar(
+                      "SUCCESS",
+                      "Project with id: $res inserted successfully...",
+                      backgroundColor: Colors.green,
+                      snackPosition: SnackPosition.BOTTOM,
+                    );
+                  } else {
+                    Get.snackbar(
+                      "FAILURE",
+                      "Project insertion failed...",
+                      backgroundColor: Colors.red,
+                      snackPosition: SnackPosition.BOTTOM,
+                    );
+                  }
+                  setState(() {
+                    today = null;
+                    tomorrow = null;
+                    thisweek = null;
+                    highpriority = null;
+                    mediumpriority = null;
+                  });
+                  // Get.toNamed('/my_taskinformationpage');
+                },
+                child: const Text(
+                  "Submit",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
               ),
             )
           ],

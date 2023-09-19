@@ -8,6 +8,7 @@ import 'package:todo_list_app/views/screens/home_page.dart';
 import 'package:todo_list_app/views/screens/intro_screen.dart';
 import 'package:todo_list_app/views/screens/list_page.dart';
 import 'package:todo_list_app/views/screens/login_page.dart';
+import 'package:todo_list_app/views/screens/my_task_informationpage.dart';
 import 'package:todo_list_app/views/screens/project_information_page.dart';
 import 'package:todo_list_app/views/screens/setting_page.dart';
 import 'package:todo_list_app/views/screens/splash_screen.dart';
@@ -37,6 +38,8 @@ void main() async{
         GetPage(name: '/calender_page', page: () => const Calender_page()),
         GetPage(name: '/setting_page', page: ()=>const Setting_page()),
         GetPage(name: '/project_information_page', page: ()=>const Project_information_page()),
+        GetPage(name: '/my_taskinformationpage', page: ()=>const My_taskinformation_page()),
+
       ],
     ),
   );

@@ -377,14 +377,14 @@ class _Home_pageState extends State<Home_page> {
             if (res >= 1) {
               Get.snackbar(
                 "SUCCESS",
-                "Spending with id: $res inserted successfully...",
+                "Project with id: $res inserted successfully...",
                 backgroundColor: Colors.green,
                 snackPosition: SnackPosition.BOTTOM,
               );
             } else {
               Get.snackbar(
                 "FAILURE",
-                "Spending insertion failed...",
+                "Project insertion failed...",
                 backgroundColor: Colors.red,
                 snackPosition: SnackPosition.BOTTOM,
               );

@@ -15,9 +15,11 @@ class Setting_page extends StatefulWidget {
 
 class _Setting_pageState extends State<Setting_page> {
   @override
-  Widget build(BuildContext context) {
-    User? user = Get.arguments as User?;
 
+  @override
+  Widget build(BuildContext context) {
+
+    User? user = Get.arguments as User?;
     ThemeController themeController = Get.put(ThemeController());
     return Scaffold(
       body: Container(
