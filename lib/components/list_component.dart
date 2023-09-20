@@ -20,6 +20,13 @@ class _List_componentState extends State<List_component> {
   String? mediumpriority;
   GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
 
+  DateTime initialDate = DateTime.now();
+
+  DateTime? date;
+  TimeOfDay initialTime = TimeOfDay.now();
+
+  TimeOfDay? time;
+
   ThemeController themeController = Get.put(ThemeController());
 
   @override
@@ -121,15 +128,13 @@ class _List_componentState extends State<List_component> {
                       )
                     ],
                   ),
-                   Padding(
+                  Padding(
                     padding: const EdgeInsets.all(16),
                     child: Row(
                       children: [
                         GestureDetector(
-                          onTap: (){
-                            setState(() {
-
-                            });
+                          onTap: () {
+                            setState(() {});
                           },
                           child: const Text(
                             "My Task",
@@ -149,13 +154,74 @@ class _List_componentState extends State<List_component> {
                   const SizedBox(
                     height: 25,
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      children: [
+                        const Text("Pick Date:"),
+                        IconButton(
+                          onPressed: () async {
+                            DateTime? pickedDate = await showDatePicker(
+                              cancelText: "Dismiss",
+                              confirmText: "Confirm",
+                              context: context,
+                              initialDate: initialDate,
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(3000),
+                            );
 
-                   Row(
+                            setState(
+                              () {
+                                date = pickedDate;
+                              },
+                            );
+                          },
+                          icon: const Icon(
+                            Icons.calendar_month_outlined,
+                          ),
+                        ),
+                        (date == null)
+                            ? Container()
+                            : Text("${date?.day}-${date?.month}-${date?.year}"),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      children: [
+                        const Text("Pick Time:"),
+                        IconButton(
+                          onPressed: () async {
+                            TimeOfDay? pickedTime = await showTimePicker(
+                              context: context,
+                              initialTime: initialTime,
+                            );
+
+                            setState(
+                              () {
+                                time = pickedTime;
+                              },
+                            );
+                          },
+                          icon: const Icon(
+                            Icons.watch_later_outlined,
+                          ),
+                        ),
+                        (time == null)
+                            ? Container()
+                            : Text("${time?.hour}:${time?.minute}"),
+                      ],
+                    ),
+                  ),
+                  Row(
                     children: [
                       Text(
                         'Today',
                         style: TextStyle(
-                          color: (themeController.themeModel.isdark)?Colors.white:Colors.black,
+                          color: (themeController.themeModel.isdark)
+                              ? Colors.white
+                              : Colors.black,
                           fontSize: 18,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
@@ -253,12 +319,14 @@ class _List_componentState extends State<List_component> {
                   const SizedBox(
                     height: 20,
                   ),
-                   Row(
+                  Row(
                     children: [
                       Text(
                         'Tomorrow',
                         style: TextStyle(
-                          color: (themeController.themeModel.isdark)?Colors.white:Colors.black,
+                          color: (themeController.themeModel.isdark)
+                              ? Colors.white
+                              : Colors.black,
                           fontSize: 18,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
@@ -405,12 +473,14 @@ class _List_componentState extends State<List_component> {
                   const SizedBox(
                     height: 20,
                   ),
-                   Row(
+                  Row(
                     children: [
                       Text(
                         'This week',
                         style: TextStyle(
-                          color: (themeController.themeModel.isdark)?Colors.white:Colors.black,
+                          color: (themeController.themeModel.isdark)
+                              ? Colors.white
+                              : Colors.black,
                           fontSize: 18,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
@@ -474,12 +544,14 @@ class _List_componentState extends State<List_component> {
                   const SizedBox(
                     height: 20,
                   ),
-                   Row(
+                  Row(
                     children: [
                       Text(
                         'High Priority',
                         style: TextStyle(
-                          color: (themeController.themeModel.isdark)?Colors.white:Colors.black,
+                          color: (themeController.themeModel.isdark)
+                              ? Colors.white
+                              : Colors.black,
                           fontSize: 18,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
@@ -503,7 +575,7 @@ class _List_componentState extends State<List_component> {
                         },
                         child: const Text("Finish Achievement"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 25,
                       ),
                       Container(
@@ -514,12 +586,12 @@ class _List_componentState extends State<List_component> {
                           color: Color(0xFF724FD6),
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: Text(
+                        child: const Text(
                           "Ok",
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
                       Container(
@@ -527,10 +599,10 @@ class _List_componentState extends State<List_component> {
                         width: 60,
                         height: 28,
                         decoration: BoxDecoration(
-                          color: Color(0xFF724FD6),
+                          color: const Color(0xFF724FD6),
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: Text(
+                        child: const Text(
                           "Ready",
                           style: TextStyle(color: Colors.white),
                         ),
@@ -552,7 +624,7 @@ class _List_componentState extends State<List_component> {
                         },
                         child: const Text("Prepare Team Meeting"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       Container(
@@ -562,14 +634,14 @@ class _List_componentState extends State<List_component> {
                         decoration: BoxDecoration(
                             color: Color(0xFFD4170B),
                             borderRadius: BorderRadius.circular(15)),
-                        child: Text(
+                        child: const Text(
                           "Add",
                           style: TextStyle(color: Colors.white),
                         ),
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -601,12 +673,14 @@ class _List_componentState extends State<List_component> {
                   const SizedBox(
                     height: 20,
                   ),
-                   Row(
+                  Row(
                     children: [
                       Text(
                         'Medium Priority',
                         style: TextStyle(
-                          color: (themeController.themeModel.isdark)?Colors.white:Colors.black,
+                          color: (themeController.themeModel.isdark)
+                              ? Colors.white
+                              : Colors.black,
                           fontSize: 18,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
@@ -671,7 +745,7 @@ class _List_componentState extends State<List_component> {
                         width: 70,
                         height: 28,
                         decoration: BoxDecoration(
-                            color: Color(0xFFD4170B),
+                            color: const Color(0xFFD4170B),
                             borderRadius: BorderRadius.circular(15)),
                         child: const Text(
                           "Add",
@@ -686,7 +760,7 @@ class _List_componentState extends State<List_component> {
                         width: 70,
                         height: 28,
                         decoration: BoxDecoration(
-                            color: Color(0xFFD4170B),
+                            color: const Color(0xFFD4170B),
                             borderRadius: BorderRadius.circular(15)),
                         child: const Text(
                           "Work",
@@ -734,7 +808,7 @@ class _List_componentState extends State<List_component> {
                         width: 60,
                         height: 28,
                         decoration: BoxDecoration(
-                          color: Color(0xFF724FD6),
+                          color: const Color(0xFF724FD6),
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: const Text(
@@ -747,12 +821,14 @@ class _List_componentState extends State<List_component> {
                   const SizedBox(
                     height: 20,
                   ),
-                   Row(
+                  Row(
                     children: [
                       Text(
                         'Medium Priority',
                         style: TextStyle(
-                          color: (themeController.themeModel.isdark)?Colors.white:Colors.black,
+                          color: (themeController.themeModel.isdark)
+                              ? Colors.white
+                              : Colors.black,
                           fontSize: 18,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
@@ -807,13 +883,15 @@ class _List_componentState extends State<List_component> {
                   backgroundColor:
                       MaterialStatePropertyAll(Colors.deepPurple.shade400),
                 ),
-                onPressed: () async{
+                onPressed: () async {
                   ListMyTaskModel listMyTaskModel = ListMyTaskModel(
                       today: today!,
                       tomorrow: tomorrow!,
                       thisweek: thisweek!,
                       highpriority: highpriority!,
-                      mediumpriority: mediumpriority!);
+                      mediumpriority: mediumpriority!,
+                      date: "${date?.day}-${date?.month}-${date?.year}",
+                      time: "${time?.hour}:${time?.minute}");
 
                   int res = await DBHelper.dbHelper
                       .insertListMyTask(data: listMyTaskModel);
@@ -840,7 +918,7 @@ class _List_componentState extends State<List_component> {
                     highpriority = null;
                     mediumpriority = null;
                   });
-                  // Get.toNamed('/my_taskinformationpage');
+
                 },
                 child: const Text(
                   "Submit",
@@ -849,7 +927,7 @@ class _List_componentState extends State<List_component> {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

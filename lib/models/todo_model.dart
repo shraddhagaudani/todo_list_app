@@ -30,6 +30,8 @@ class ListMyTaskModel {
   String thisweek;
   String highpriority;
   String mediumpriority;
+  String date;
+  String time;
 
   ListMyTaskModel({
     this.mytaskid,
@@ -38,6 +40,8 @@ class ListMyTaskModel {
     required this.thisweek,
     required this.highpriority,
     required this.mediumpriority,
+    required this.date,
+    required this.time,
   });
 
   factory ListMyTaskModel.fromMap({required Map<String, dynamic> data}) {
@@ -48,6 +52,8 @@ class ListMyTaskModel {
       thisweek: data['this_week'],
       highpriority: data['high_priority'],
       mediumpriority: data['medium_priority'],
+      date: data['date'],
+      time: data['time'],
     );
   }
 }
@@ -59,15 +65,16 @@ class CalenderModel {
   String time;
   String scheduled;
 
-  CalenderModel(
-      {this.calenderid,
-      required this.date,
-      required this.time,
-      required this.scheduled});
+  CalenderModel({
+    this.calenderid,
+    required this.date,
+    required this.time,
+    required this.scheduled,
+  });
 
   factory CalenderModel.fromMap({required Map<String, dynamic> data}) {
     return CalenderModel(
-      calenderid: data['calenderid'],
+      calenderid: data['calender_id'],
       date: data['date'],
       time: data['time'],
       scheduled: data['scheduled'],

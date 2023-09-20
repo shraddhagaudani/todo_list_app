@@ -23,10 +23,13 @@ class DBHelper {
 
       //for list_components:
       String listmytaskquery =
-          "CREATE TABLE IF NOT EXISTS listmytask(mytask_id INTEGER PRIMARY KEY AUTOINCREMENT,to_day TEXT NOT NULL,to_morrow TEXT NOT NULL,this_week TEXT NOT NULL,high_priority TEXT NOT NULL,medium_priority TEXT NOT NULL);";
+          "CREATE TABLE IF NOT EXISTS listmytask(mytask_id INTEGER PRIMARY KEY AUTOINCREMENT,to_day TEXT NOT NULL,to_morrow TEXT NOT NULL,this_week TEXT NOT NULL,high_priority TEXT NOT NULL,medium_priority TEXT NOT NULL,date TEXT NOT NULL,time TEXT NOT NULL);";
 
       await db.execute(listmytaskquery);
     });
+
+    //for calender_component:
+    "CREATE TABLE IF NOT EXISTS calender(calenderid INTEGER PRIMARY KEY AUTOINCREMENT,date TEXT NOT NULL,time TEXT NOT NULL,scheduled TEXT NOT NULL);";
   }
 
   Future<int> insertProject({required ToDoModel data}) async {
@@ -69,7 +72,7 @@ class DBHelper {
     await initDB();
 
     String query =
-        "INSERT INTO listmytask(to_day,to_morrow,this_week,high_priority,medium_priority)VALUES(?,?,?,?,?);";
+        "INSERT INTO listmytask(to_day,to_morrow,this_week,high_priority,medium_priority,date,time)VALUES(?,?,?,?,?,?,?);";
 
     List args = [
       data.today,
@@ -77,6 +80,8 @@ class DBHelper {
       data.thisweek,
       data.highpriority,
       data.mediumpriority,
+      data.date,
+      data.time,
     ];
 
     int res = await db!.rawInsert(query, args);
@@ -90,18 +95,53 @@ class DBHelper {
 
     List<Map<String, dynamic>> res = await db!.rawQuery(query);
 
-    List<ListMyTaskModel> listmytaskmodel = await res.map((e) => ListMyTaskModel.fromMap(data: e)).toList();
+    List<ListMyTaskModel> listmytaskmodel =
+        await res.map((e) => ListMyTaskModel.fromMap(data: e)).toList();
 
     return listmytaskmodel;
   }
 
- Future<int> deleteListMyTask({required int id})async{
+  Future<int> deleteListMyTask({required int id}) async {
     await initDB();
 
-   String query =  "DELETE FROM listmytask WHERE mytask_id=?";
-   List args = [id];
+    String query = "DELETE FROM listmytask WHERE mytask_id=?";
+    List args = [id];
 
-   int res = await db!.rawDelete(query,args);
-   return res;
+    int res = await db!.rawDelete(query, args);
+    return res;
+  }
+
+  //for Calender_components:
+  Future<int> insertCalender({required CalenderModel data}) async {
+    await initDB();
+
+    String query = "INSERT INTO calender(date,time,scheduled)VALUES(?,?,?)";
+
+    List args = [
+      data.date,
+      data.time,
+      data.scheduled,
+    ];
+    int res = await db!.rawInsert(query, args);
+    return res;
+  }
+
+  Future<List<CalenderModel>> fetchCalender() async {
+    String query = "SELECT *FROM calender";
+
+    List<Map<String, dynamic>> res = await db!.rawQuery(query);
+
+    List<CalenderModel> calendermodel =
+        res.map((e) => CalenderModel.fromMap(data: e)).toList();
+    return calendermodel;
+  }
+
+  Future<int> deleteCalender({required int id}) async {
+    String query = "DELETE FROM calender WHERE calender_id=?";
+
+    List args = [id];
+
+    int res = await db!.rawDelete(query);
+    return res;
   }
 }

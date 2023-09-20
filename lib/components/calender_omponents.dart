@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:todo_list_app/helpers/db_helper.dart';
+import 'package:todo_list_app/models/todo_model.dart';
 
 class calender_component extends StatefulWidget {
   const calender_component({super.key});
@@ -24,9 +28,89 @@ class _calender_componentState extends State<calender_component> {
         children: [
           Container(
             width: 393,
-            height: 129,
+            height: 152,
             decoration: const BoxDecoration(
               color: Color(0xFF724FD6),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 80,
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.architecture,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                // SizedBox(
+                //   height: 40,
+                //   width: 250,
+                //   child: TextField(
+                //     decoration: InputDecoration(prefixIcon: Icon(Icons.search,color: Colors.black,),fillColor: Colors.white,
+                //       border: OutlineInputBorder(
+                //         borderRadius: BorderRadius.circular(40),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                Container(
+                  alignment: Alignment.topLeft,
+                  width: 217,
+                  height: 32,
+                  decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(7),
+                    child: Row(
+                      children: [
+                        // SizedBox(width: 10,),
+                        Icon(
+                          Icons.search,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 30,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  width: 56,
+                  height: 56,
+                  decoration: const ShapeDecoration(
+                    color: Color(0xD1C0B6FD),
+                    shape: OvalBorder(),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            // Get.toNamed('/my_taskinformationpage');
+                          },
+                          icon: const Icon(
+                            Icons.other_houses,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
           const SizedBox(
@@ -163,12 +247,41 @@ class _calender_componentState extends State<calender_component> {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-
             ],
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () async {
+              CalenderModel calendermodel = CalenderModel(
+                  date: "${date?.day}-${date?.month}-${date?.year}",
+                  time: "${time?.hour}:${time?.minute}",
+                  scheduled: calanderpage!);
+
+              int res =
+                  await DBHelper.dbHelper.insertCalender(data: calendermodel);
+
+              if (res >= 1) {
+                Get.snackbar(
+                  "SUCCESS",
+                  "Project with id: $res inserted successfully...",
+                  backgroundColor: Colors.green,
+                  snackPosition: SnackPosition.BOTTOM,
+                );
+              } else {
+                Get.snackbar(
+                  "FAILURE",
+                  "Project insertion failed...",
+                  backgroundColor: Colors.red,
+                  snackPosition: SnackPosition.BOTTOM,
+                );
+              }
+              setState(() {
+                time = null;
+                date = null;
+              });
+            },
             child: const Text("Done"),
           ),
         ],
