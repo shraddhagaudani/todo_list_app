@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:todo_list_app/controllers/introscreen_controller.dart';
+import 'package:todo_list_app/controllers/login_out_controllers.dart';
+import 'package:todo_list_app/helpers/firebase_auth_helper.dart';
 
 class Splash_screen extends StatefulWidget {
   const Splash_screen({super.key});
@@ -10,11 +13,29 @@ class Splash_screen extends StatefulWidget {
 }
 
 class _Splash_screenState extends State<Splash_screen> {
+  IntroAccessController introAccessController = Get.put(IntroAccessController());
+  LogINOutController logINOutController = Get.put(LogINOutController());
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 5)).then(
-          (value) => Get.offAllNamed('/intro_screen'),
+    Future.delayed(const Duration(seconds: 2)).then(
+          (value) => (introAccessController.introAccess_Model.introaccess)
+          ? (logINOutController.loginInOutModel.islogin)
+          ? Get.offAndToNamed(
+        '/home_page',
+        arguments: FireBaseAuthHelper.firebaseAuth.currentUser,
+      )
+          : Get.offAndToNamed(
+        '/login_page',
+        // arguments: FirebaseAuthHelper.firebaseAuth.currentUser,
+      )
+          : Get.offAllNamed(
+        '/intro_screen',
+        // arguments: FirebaseAuthHelper.firebaseAuth.currentUser,
+      ),
     );
+    // Future.delayed(const Duration(seconds: 5)).then(
+    //       (value) => Get.offAllNamed('/intro_screen'),
+    // );
     return Scaffold(
       backgroundColor: Color(0xD1C0B6FD),
       body: Container(
