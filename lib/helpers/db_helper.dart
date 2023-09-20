@@ -29,7 +29,10 @@ class DBHelper {
     });
 
     //for calender_component:
-    "CREATE TABLE IF NOT EXISTS calender(calenderid INTEGER PRIMARY KEY AUTOINCREMENT,date TEXT NOT NULL,time TEXT NOT NULL,scheduled TEXT NOT NULL);";
+    String calenderquery =
+        "CREATE TABLE IF NOT EXISTS calender(calender_id INTEGER PRIMARY KEY AUTOINCREMENT,date TEXT NOT NULL,time TEXT NOT NULL,scheduled TEXT NOT NULL);";
+
+    await db?.execute(calenderquery);
   }
 
   Future<int> insertProject({required ToDoModel data}) async {
@@ -127,6 +130,7 @@ class DBHelper {
   }
 
   Future<List<CalenderModel>> fetchCalender() async {
+    await initDB();
     String query = "SELECT *FROM calender";
 
     List<Map<String, dynamic>> res = await db!.rawQuery(query);
@@ -137,11 +141,12 @@ class DBHelper {
   }
 
   Future<int> deleteCalender({required int id}) async {
+    await initDB();
     String query = "DELETE FROM calender WHERE calender_id=?";
 
     List args = [id];
 
-    int res = await db!.rawDelete(query);
+    int res = await db!.rawDelete(query,args);
     return res;
   }
 }

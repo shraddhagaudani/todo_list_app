@@ -91,10 +91,10 @@ class _Project_information_pageState extends State<Project_information_page> {
                                           Get.dialog(
                                             AlertDialog(
                                               title: const Center(
-                                                child: Text("Delete Spending"),
+                                                child: Text("Delete Project"),
                                               ),
                                               content: const Text(
-                                                  "Are you sure to delete this spending??"),
+                                                  "Are you sure to delete this Project??"),
                                               actions: [
                                                 OutlinedButton(
                                                   onPressed: () async {

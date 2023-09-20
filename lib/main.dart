@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:todo_list_app/views/screens/calander_page.dart';
+import 'package:todo_list_app/views/screens/calender_informationpage.dart';
 import 'package:todo_list_app/views/screens/home_page.dart';
 import 'package:todo_list_app/views/screens/intro_screen.dart';
 import 'package:todo_list_app/views/screens/list_page.dart';
@@ -35,10 +35,10 @@ void main() async{
         GetPage(name: '/login_page', page: () => const Login_page()),
         GetPage(name: '/home_page', page: () => const Home_page()),
         GetPage(name: '/list_page', page: () => const List_page()),
-        GetPage(name: '/calender_page', page: () => const Calender_page()),
         GetPage(name: '/setting_page', page: ()=>const Setting_page()),
         GetPage(name: '/project_information_page', page: ()=>const Project_information_page()),
         GetPage(name: '/my_taskinformationpage', page: ()=>const My_taskinformation_page()),
+        GetPage(name: '/calender_informationpage', page: ()=>const Calender_information_page()),
 
       ],
     ),

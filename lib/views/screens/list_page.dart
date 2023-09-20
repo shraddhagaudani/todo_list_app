@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo_list_app/components/calender_omponents.dart';
+import 'package:todo_list_app/components/calender_components.dart';
 import 'package:todo_list_app/components/list_component.dart';
 import 'package:todo_list_app/controllers/navigation_controller.dart';
-import 'package:todo_list_app/views/screens/calander_page.dart';
 
 class List_page extends StatefulWidget {
   const List_page({super.key});

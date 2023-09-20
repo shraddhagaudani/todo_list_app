@@ -95,23 +95,30 @@ class _calender_componentState extends State<calender_component> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(3),
-                    child: Row(
+                    child: Column(
                       children: [
-                        IconButton(
-                          onPressed: () {
-                            // Get.toNamed('/my_taskinformationpage');
-                          },
-                          icon: const Icon(
-                            Icons.other_houses,
-                            color: Colors.white,
-                          ),
+                        Row(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                Get.toNamed('/calender_informationpage');
+                              },
+                              icon: const Icon(
+                                Icons.other_houses,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
+
                       ],
                     ),
                   ),
-                )
+                ),
+
               ],
             ),
+
           ),
           const SizedBox(
             height: 20,
@@ -250,7 +257,7 @@ class _calender_componentState extends State<calender_component> {
             ],
           ),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
           ElevatedButton(
             onPressed: () async {
@@ -280,9 +287,12 @@ class _calender_componentState extends State<calender_component> {
               setState(() {
                 time = null;
                 date = null;
+                calanderpage = null;
               });
             },
-            child: const Text("Done"),
+            child: const Text(
+              "Done",
+            ),
           ),
         ],
       ),

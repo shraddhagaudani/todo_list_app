@@ -51,7 +51,7 @@ class _My_taskinformation_pageState extends State<My_taskinformation_page> {
                           color: Colors.deepPurple.shade100,
                           child: Container(
                             padding: const EdgeInsets.all(16),
-                            height: 400,
+                            height: 430,
                             width: double.infinity,
                             child: Padding(
                               padding: const EdgeInsets.all(16),
@@ -70,9 +70,73 @@ class _My_taskinformation_pageState extends State<My_taskinformation_page> {
                                             fontSize: 15),
                                       ),
                                       Text(data[i].date),
+                                      SizedBox(width: 103,),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.end,
+                                        children: [
+                                          IconButton(
+                                            onPressed: () {
+                                              Get.dialog(
+                                                AlertDialog(
+                                                  title: const Center(
+                                                    child: Text(
+                                                        "Delete Task"),
+                                                  ),
+                                                  content: const Text(
+                                                    "Are you sure to delete this Task??",
+                                                  ),
+                                                  actions: [
+                                                    OutlinedButton(
+                                                      onPressed: () async {
+                                                        Get.back();
+
+                                                        int res = await DBHelper
+                                                            .dbHelper
+                                                            .deleteListMyTask(
+                                                            id: data[i]
+                                                                .mytaskid!);
+
+                                                        if (res == 1) {
+                                                          setState(() {
+                                                            DBHelper.dbHelper
+                                                                .fetchListMyTask();
+                                                          });
+                                                          Get.snackbar(
+                                                              "SUCCESS",
+                                                              "Spending deleted successfully...",
+                                                              snackPosition:
+                                                              SnackPosition
+                                                                  .BOTTOM);
+                                                        } else {
+                                                          Get.snackbar(
+                                                              "FAILURE",
+                                                              "Spending deletion failed...",
+                                                              snackPosition:
+                                                              SnackPosition
+                                                                  .BOTTOM);
+                                                        }
+                                                      },
+                                                      child:
+                                                      const Text("Yes"),
+                                                    ),
+                                                    OutlinedButton(
+                                                      onPressed: () async {
+                                                        Get.back();
+                                                      },
+                                                      child: const Text("No"),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            },
+                                            icon: const Icon(Icons.delete),
+                                          ),
+                                        ],
+                                      ),
                                     ],
                                   ),
-                                  SizedBox(height: 5,),
+                                  SizedBox(height: 10,),
                                   Row(
                                     children: [
                                       const Text(
@@ -86,7 +150,7 @@ class _My_taskinformation_pageState extends State<My_taskinformation_page> {
                                   ),
 
                                   const SizedBox(
-                                    height: 5,
+                                    height: 10,
                                   ),
                                   const Text(
                                     "Today:",
@@ -96,7 +160,7 @@ class _My_taskinformation_pageState extends State<My_taskinformation_page> {
                                   ),
                                   Text(data[i].today),
                                   const SizedBox(
-                                    height: 5,
+                                    height: 10,
                                   ),
                                   const Text(
                                     "Tomorrow:",
@@ -108,7 +172,7 @@ class _My_taskinformation_pageState extends State<My_taskinformation_page> {
                                     data[i].tomorrow,
                                   ),
                                   const SizedBox(
-                                    height: 5,
+                                    height: 10,
                                   ),
                                   const Text(
                                     "This Week:",
@@ -119,7 +183,7 @@ class _My_taskinformation_pageState extends State<My_taskinformation_page> {
                                   Text(
                                     data[i].thisweek,
                                   ),
-                                  const SizedBox(height: 5),
+                                  const SizedBox(height: 10),
                                   const Text(
                                     "High priority:",
                                     style: TextStyle(
@@ -128,7 +192,7 @@ class _My_taskinformation_pageState extends State<My_taskinformation_page> {
                                   ),
                                   Text(data[i].highpriority),
                                   const SizedBox(
-                                    height: 5,
+                                    height: 10,
                                   ),
                                   const Text(
                                     "Medium Priority:",
@@ -138,71 +202,9 @@ class _My_taskinformation_pageState extends State<My_taskinformation_page> {
                                   ),
                                   Text(data[i].mediumpriority),
                                   const SizedBox(
-                                    height: 5,
+                                    height: 10,
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.end,
-                                    children: [
-                                      IconButton(
-                                        onPressed: () {
-                                          Get.dialog(
-                                            AlertDialog(
-                                              title: const Center(
-                                                child: Text(
-                                                    "Delete Spending"),
-                                              ),
-                                              content: const Text(
-                                                "Are you sure to delete this spending??",
-                                              ),
-                                              actions: [
-                                                OutlinedButton(
-                                                  onPressed: () async {
-                                                    Get.back();
 
-                                                    int res = await DBHelper
-                                                        .dbHelper
-                                                        .deleteListMyTask(
-                                                            id: data[i]
-                                                                .mytaskid!);
-
-                                                    if (res == 1) {
-                                                      setState(() {
-                                                        DBHelper.dbHelper
-                                                            .fetchProject();
-                                                      });
-                                                      Get.snackbar(
-                                                          "SUCCESS",
-                                                          "Spending deleted successfully...",
-                                                          snackPosition:
-                                                              SnackPosition
-                                                                  .BOTTOM);
-                                                    } else {
-                                                      Get.snackbar(
-                                                          "FAILURE",
-                                                          "Spending deletion failed...",
-                                                          snackPosition:
-                                                              SnackPosition
-                                                                  .BOTTOM);
-                                                    }
-                                                  },
-                                                  child:
-                                                      const Text("Yes"),
-                                                ),
-                                                OutlinedButton(
-                                                  onPressed: () async {
-                                                    Get.back();
-                                                  },
-                                                  child: const Text("No"),
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                        icon: const Icon(Icons.delete),
-                                      ),
-                                    ],
-                                  ),
                                 ],
                               ),
                             ),
