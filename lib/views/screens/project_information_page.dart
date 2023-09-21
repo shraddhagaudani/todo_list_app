@@ -40,7 +40,7 @@ class _Project_information_pageState extends State<Project_information_page> {
                 List<ToDoModel>? data = snapshot.data;
 
                 if (data == null || data.isEmpty) {
-                  return const Text("No data available...");
+                  return Center(child: const Text("No data available..."));
                 } else {
                   return ListView.builder(
                       shrinkWrap: true,
@@ -108,17 +108,17 @@ class _Project_information_pageState extends State<Project_information_page> {
 
                                                     if (res == 1) {
                                                       setState(() {
-                                                        DBHelper.dbHelper
+                                                      getAllProjectInformation =   DBHelper.dbHelper
                                                             .fetchProject();
                                                       });
                                                       Get.snackbar("SUCCESS",
-                                                          "Spending deleted successfully...",
+                                                          "Project deleted successfully...",
                                                           snackPosition:
                                                               SnackPosition
                                                                   .BOTTOM);
                                                     } else {
                                                       Get.snackbar("FAILURE",
-                                                          "Spending deletion failed...",
+                                                          "Project deletion failed...",
                                                           snackPosition:
                                                               SnackPosition
                                                                   .BOTTOM);

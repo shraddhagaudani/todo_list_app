@@ -178,15 +178,16 @@ class _Login_pageState extends State<Login_page> {
                             //     ),
                             //   ),
                             // ),
-                            TextFormField(
+                            TextFormField(obscureText: true,
                               controller: loginpasswordController,
                               validator: (val) {
                                 if (val!.isEmpty) {
-                                  return "Please enter email first..";
+                                  return "Please enter password first..";
                                 }
                                 return null;
                               },
                               decoration: InputDecoration(
+
                                 filled: true,
                                 fillColor: const Color(
                                   0xFFD9D9D9,
@@ -439,11 +440,11 @@ class _Login_pageState extends State<Login_page> {
                             const SizedBox(
                               height: 5,
                             ),
-                            TextFormField(
+                            TextFormField(obscureText: true,
                               controller: signuppasswordController,
                               validator: (val) {
                                 if (val!.isEmpty) {
-                                  return "Please enter email first..";
+                                  return "Please enter password first..";
                                 }
                                 return null;
                               },

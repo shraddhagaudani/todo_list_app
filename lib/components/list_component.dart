@@ -169,7 +169,6 @@ class _List_componentState extends State<List_component> {
                               firstDate: DateTime(2000),
                               lastDate: DateTime(3000),
                             );
-
                             setState(
                               () {
                                 date = pickedDate;
@@ -197,7 +196,6 @@ class _List_componentState extends State<List_component> {
                               context: context,
                               initialTime: initialTime,
                             );
-
                             setState(
                               () {
                                 time = pickedTime;
@@ -899,14 +897,14 @@ class _List_componentState extends State<List_component> {
                   if (res >= 1) {
                     Get.snackbar(
                       "SUCCESS",
-                      "Project with id: $res inserted successfully...",
+                      "My ListTask with id: $res inserted successfully...",
                       backgroundColor: Colors.green,
                       snackPosition: SnackPosition.BOTTOM,
                     );
                   } else {
                     Get.snackbar(
                       "FAILURE",
-                      "Project insertion failed...",
+                      "My ListTask insertion failed...",
                       backgroundColor: Colors.red,
                       snackPosition: SnackPosition.BOTTOM,
                     );

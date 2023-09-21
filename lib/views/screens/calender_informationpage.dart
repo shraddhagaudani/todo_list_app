@@ -106,7 +106,7 @@ class _Calender_information_pageState extends State<Calender_information_page> {
 
                                                 if (res == 1) {
                                                   setState(() {
-                                                    DBHelper.dbHelper
+                                                    allCalenderInformation = DBHelper.dbHelper
                                                         .fetchCalender();
                                                   });
                                                   Get.snackbar("SUCCESS",

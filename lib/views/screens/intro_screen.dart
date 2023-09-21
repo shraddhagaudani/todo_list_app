@@ -150,29 +150,30 @@ class _Intro_screenState extends State<Intro_screen> {
                 //   ),
                 // ),
 
-                Container(
-                  height: 200,
-                  width: 200,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFF724FD6),
-                  ),
-                  child: Row(
-                    children: [
-                      const SizedBox(
-                        width: 120,
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Get.offAllNamed('/login_page');
-                        },
-                        icon: const Icon(
-                          Icons.arrow_forward_outlined,
-                          color: Colors.white,
-                          size: 50,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(alignment: Alignment.center,
+                    height: 100,
+                    width: 100,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFF724FD6),
+                    ),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+
+                        IconButton(
+                          onPressed: () {
+                            Get.offAllNamed('/login_page');
+                          },
+                          icon: const Icon(
+                            Icons.arrow_forward_outlined,
+                            color: Colors.white,
+                            size: 50,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],
