@@ -898,14 +898,12 @@ class _List_componentState extends State<List_component> {
                     Get.snackbar(
                       "SUCCESS",
                       "My ListTask with id: $res inserted successfully...",
-                      backgroundColor: Colors.green,
                       snackPosition: SnackPosition.BOTTOM,
                     );
                   } else {
                     Get.snackbar(
                       "FAILURE",
                       "My ListTask insertion failed...",
-                      backgroundColor: Colors.red,
                       snackPosition: SnackPosition.BOTTOM,
                     );
                   }

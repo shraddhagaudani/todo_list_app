@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:todo_list_app/controllers/indexedstack_controller.dart';
+import 'package:todo_list_app/controllers/login_out_controllers.dart';
 import 'package:todo_list_app/helpers/firebase_auth_helper.dart';
 
 class Login_page extends StatefulWidget {
@@ -28,6 +29,8 @@ class _Login_pageState extends State<Login_page> {
 
   IndexedStackValController indexedStackValController =
       Get.put(IndexedStackValController());
+
+  LogINOutController logINOutController = Get.put(LogINOutController());
 
   @override
   Widget build(BuildContext context) {
@@ -208,6 +211,7 @@ class _Login_pageState extends State<Login_page> {
                               onTap: () {
 
                                 ValidateAndSignIn();
+                                logINOutController.logInOutTrueValue();
                                 loginemailController.clear();
                                 loginpasswordController.clear();
                               },
@@ -467,9 +471,9 @@ class _Login_pageState extends State<Login_page> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                print(signupemailController.text);
-                                print(signuppasswordController.text);
+
                                 ValidateAndSignUp();
+                                logINOutController.logInOutTrueValue();
                                 signupemailController.clear();
                                 signuppasswordController.clear();
                               },

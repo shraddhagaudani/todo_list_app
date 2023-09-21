@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo_list_app/controllers/introscreen_controller.dart';
 
 class Intro_screen extends StatefulWidget {
   const Intro_screen({super.key});
@@ -9,6 +10,7 @@ class Intro_screen extends StatefulWidget {
 }
 
 class _Intro_screenState extends State<Intro_screen> {
+  IntroAccessController introAccessController = Get.put(IntroAccessController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -164,6 +166,7 @@ class _Intro_screenState extends State<Intro_screen> {
 
                         IconButton(
                           onPressed: () {
+                            introAccessController.introAccessControllerTrueValue(val: true);
                             Get.offAllNamed('/login_page');
                           },
                           icon: const Icon(

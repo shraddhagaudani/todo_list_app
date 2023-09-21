@@ -378,14 +378,14 @@ class _Home_pageState extends State<Home_page> {
               Get.snackbar(
                 "SUCCESS",
                 "Project with id: $res inserted successfully...",
-                backgroundColor: Colors.green,
+
                 snackPosition: SnackPosition.BOTTOM,
               );
             } else {
               Get.snackbar(
                 "FAILURE",
                 "Project insertion failed...",
-                backgroundColor: Colors.red,
+
                 snackPosition: SnackPosition.BOTTOM,
               );
             }

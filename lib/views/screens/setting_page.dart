@@ -14,9 +14,9 @@ class Setting_page extends StatefulWidget {
 }
 
 class _Setting_pageState extends State<Setting_page> {
-
   ThemeController themeController = Get.put(ThemeController());
   User? user = Get.arguments as User?;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,10 +37,12 @@ class _Setting_pageState extends State<Setting_page> {
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon:  Icon(
+                        icon: Icon(
                           CupertinoIcons.profile_circled,
                           size: 120,
-                          color: (themeController.themeModel.isdark)?Colors.white:Colors.black,
+                          color: (themeController.themeModel.isdark)
+                              ? Colors.white
+                              : Colors.black,
                         ),
                       ),
                       const SizedBox(

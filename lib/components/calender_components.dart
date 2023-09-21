@@ -273,14 +273,12 @@ class _calender_componentState extends State<calender_component> {
                 Get.snackbar(
                   "SUCCESS",
                   "Project with id: $res inserted successfully...",
-                  backgroundColor: Colors.green,
                   snackPosition: SnackPosition.BOTTOM,
                 );
               } else {
                 Get.snackbar(
                   "FAILURE",
                   "Project insertion failed...",
-                  backgroundColor: Colors.red,
                   snackPosition: SnackPosition.BOTTOM,
                 );
               }
