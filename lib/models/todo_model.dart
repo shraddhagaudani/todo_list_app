@@ -63,21 +63,21 @@ class CalenderModel {
   int? calenderid;
   String date;
   String time;
-  String scheduled;
+  String workinformation;
 
-  CalenderModel({
-    this.calenderid,
-    required this.date,
-    required this.time,
-    required this.scheduled,
-  });
+  CalenderModel(
+      {this.calenderid,
+      required this.date,
+      required this.time,
+
+      required this.workinformation});
 
   factory CalenderModel.fromMap({required Map<String, dynamic> data}) {
     return CalenderModel(
       calenderid: data['calender_id'],
       date: data['date'],
       time: data['time'],
-      scheduled: data['scheduled'],
+      workinformation: data['workinformation'],
     );
   }
 }

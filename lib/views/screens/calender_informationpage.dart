@@ -41,108 +41,116 @@ class _Calender_information_pageState extends State<Calender_information_page> {
                   child: Text("No available data..."),
                 );
               } else {
-                return ListView.builder(itemCount: data.length,itemBuilder: (context,i){
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Card(
-                      color: Colors.deepPurple.shade100,
-                      child: Container(
-                        padding: EdgeInsets.all(16),
-                        height: 225,
-                        width: double.infinity,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              "Today Date:",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
-                            ),
-                            Text(data[i].date),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const Text(
-                              "Today Time:",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
-                            ),
-                            Text(data[i].time),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const Text(
-                              "scheduled:",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
-                            ),
-                            Text(data[i].scheduled),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                return ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context, i) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Card(
+                          color: Colors.deepPurple.shade100,
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            height: 235,
+                            width: double.infinity,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                IconButton(
-                                    onPressed: () {
-                                      Get.dialog(
-                                        AlertDialog(
-                                          title: const Center(
-                                            child: Text("Delete Scheduled"),
+                                const Text(
+                                  "Today Date:",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                                Text(data[i].date),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const Text(
+                                  "Today Time:",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                                Text(data[i].time),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+
+                              const SizedBox(
+                                  height: 10,
+                                ),
+                                const Text(
+                                  "Your Choice:",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                                Text(data[i].workinformation),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {
+                                        Get.dialog(
+                                          AlertDialog(
+                                            title: const Center(
+                                              child: Text("Delete Scheduled"),
+                                            ),
+                                            content: const Text(
+                                                "Are you sure to delete this scheduled??"),
+                                            actions: [
+                                              OutlinedButton(
+                                                onPressed: () async {
+                                                  Get.back();
+
+                                                  int res = await DBHelper
+                                                      .dbHelper
+                                                      .deleteCalender(
+                                                          id: data[i]
+                                                              .calenderid!);
+
+                                                  if (res == 1) {
+                                                    setState(() {
+                                                      allCalenderInformation =
+                                                          DBHelper.dbHelper
+                                                              .fetchCalender();
+                                                    });
+                                                    Get.snackbar("SUCCESS",
+                                                        "Spending deleted successfully...",
+                                                        snackPosition:
+                                                            SnackPosition
+                                                                .BOTTOM);
+                                                  } else {
+                                                    Get.snackbar("FAILURE",
+                                                        "Spending deletion failed...",
+                                                        snackPosition:
+                                                            SnackPosition
+                                                                .BOTTOM);
+                                                  }
+                                                },
+                                                child: const Text("Yes"),
+                                              ),
+                                              OutlinedButton(
+                                                onPressed: () async {
+                                                  Get.back();
+                                                },
+                                                child: const Text("No"),
+                                              ),
+                                            ],
                                           ),
-                                          content: const Text(
-                                              "Are you sure to delete this scheduled??"),
-                                          actions: [
-                                            OutlinedButton(
-                                              onPressed: () async {
-                                                Get.back();
-
-                                                int res = await DBHelper
-                                                    .dbHelper
-                                                    .deleteCalender(
-                                                    id: data[i]
-                                                        .calenderid!);
-
-                                                if (res == 1) {
-                                                  setState(() {
-                                                    allCalenderInformation = DBHelper.dbHelper
-                                                        .fetchCalender();
-                                                  });
-                                                  Get.snackbar("SUCCESS",
-                                                      "Spending deleted successfully...",
-                                                      snackPosition:
-                                                      SnackPosition
-                                                          .BOTTOM);
-                                                } else {
-                                                  Get.snackbar("FAILURE",
-                                                      "Spending deletion failed...",
-                                                      snackPosition:
-                                                      SnackPosition
-                                                          .BOTTOM);
-                                                }
-                                              },
-                                              child: const Text("Yes"),
-                                            ),
-                                            OutlinedButton(
-                                              onPressed: () async {
-                                                Get.back();
-                                              },
-                                              child: const Text("No"),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                    icon: const Icon(Icons.delete))
+                                        );
+                                      },
+                                      icon: const Icon(Icons.delete),
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  );
-                });
+                      );
+                    });
               }
             }
             return const Center(

@@ -181,7 +181,8 @@ class _Login_pageState extends State<Login_page> {
                             //     ),
                             //   ),
                             // ),
-                            TextFormField(obscureText: true,
+                            TextFormField(
+                              obscureText: true,
                               controller: loginpasswordController,
                               validator: (val) {
                                 if (val!.isEmpty) {
@@ -190,7 +191,6 @@ class _Login_pageState extends State<Login_page> {
                                 return null;
                               },
                               decoration: InputDecoration(
-
                                 filled: true,
                                 fillColor: const Color(
                                   0xFFD9D9D9,
@@ -209,7 +209,6 @@ class _Login_pageState extends State<Login_page> {
                             ),
                             GestureDetector(
                               onTap: () {
-
                                 ValidateAndSignIn();
                                 logINOutController.logInOutTrueValue();
                                 loginemailController.clear();
@@ -397,7 +396,9 @@ class _Login_pageState extends State<Login_page> {
                                 Text(
                                   "E-mail",
                                   style: TextStyle(
-                                      color: Color(0xFF857E7E), fontSize: 18),
+                                    color: Color(0xFF857E7E),
+                                    fontSize: 18,
+                                  ),
                                 )
                               ],
                             ),
@@ -444,7 +445,8 @@ class _Login_pageState extends State<Login_page> {
                             const SizedBox(
                               height: 5,
                             ),
-                            TextFormField(obscureText: true,
+                            TextFormField(
+                              obscureText: true,
                               controller: signuppasswordController,
                               validator: (val) {
                                 if (val!.isEmpty) {
@@ -471,7 +473,6 @@ class _Login_pageState extends State<Login_page> {
                             ),
                             GestureDetector(
                               onTap: () {
-
                                 ValidateAndSignUp();
                                 logINOutController.logInOutTrueValue();
                                 signupemailController.clear();
@@ -643,12 +644,17 @@ class _Login_pageState extends State<Login_page> {
           "successfully login....😊",
           duration: const Duration(seconds: 1),
         );
-        Get.offNamed('/home_page', arguments: data['user']);
+        Get.offNamed(
+          '/home_page',
+          arguments: data['user'],
+        );
       } else {
         Get.snackbar(
           "NOT SUCCESSFULLY",
           data['msg'],
-          duration: const Duration(seconds: 1),
+          duration: const Duration(
+            seconds: 1,
+          ),
         );
       }
     }

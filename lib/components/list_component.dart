@@ -908,6 +908,8 @@ class _List_componentState extends State<List_component> {
                     );
                   }
                   setState(() {
+                    time = null;
+                    date = null;
                     today = null;
                     tomorrow = null;
                     thisweek = null;

@@ -19,11 +19,11 @@ class _Setting_pageState extends State<Setting_page> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: GetBuilder<ThemeController>(
-          builder: (_) {
-            return Column(
+    return GetBuilder<ThemeController>(
+      builder: (_){
+        return Scaffold(
+          body: Container(
+            child: Column(
               children: [
                 Container(
                   height: 210,
@@ -113,8 +113,8 @@ class _Setting_pageState extends State<Setting_page> {
                           icon: (themeController.themeModel.isdark)
                               ? const Icon(CupertinoIcons.sun_min)
                               : const Icon(
-                                  CupertinoIcons.moon,
-                                ),
+                            CupertinoIcons.moon,
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -167,10 +167,10 @@ class _Setting_pageState extends State<Setting_page> {
                   ),
                 ),
               ],
-            );
-          },
-        ),
-      ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -30,7 +30,7 @@ class DBHelper {
 
     //for calender_component:
     String calenderquery =
-        "CREATE TABLE IF NOT EXISTS calender(calender_id INTEGER PRIMARY KEY AUTOINCREMENT,date TEXT NOT NULL,time TEXT NOT NULL,scheduled TEXT NOT NULL);";
+        "CREATE TABLE IF NOT EXISTS calender(calender_id INTEGER PRIMARY KEY AUTOINCREMENT,date TEXT NOT NULL,time TEXT NOT NULL,workinformation TEXT NOT NULL);";
 
     await db?.execute(calenderquery);
   }
@@ -118,12 +118,12 @@ class DBHelper {
   Future<int> insertCalender({required CalenderModel data}) async {
     await initDB();
 
-    String query = "INSERT INTO calender(date,time,scheduled)VALUES(?,?,?)";
+    String query = "INSERT INTO calender(date,time,workinformation)VALUES(?,?,?)";
 
     List args = [
       data.date,
       data.time,
-      data.scheduled,
+      data.workinformation,
     ];
     int res = await db!.rawInsert(query, args);
     return res;

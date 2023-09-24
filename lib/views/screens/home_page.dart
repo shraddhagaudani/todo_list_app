@@ -22,9 +22,9 @@ class _Home_pageState extends State<Home_page> {
   String? projectLables;
   String? projectStatus;
 
+  ThemeController themeController = Get.put(ThemeController());
   @override
   Widget build(BuildContext context) {
-    ThemeController themeController = Get.put(ThemeController());
     User? user = Get.arguments as User?;
     return Scaffold(
       resizeToAvoidBottomInset: false,
