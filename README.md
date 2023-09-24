@@ -41,8 +41,8 @@ Project Output:
   <img align= "left" src="https://github.com/shraddhagaudani/todo_list_app/assets/122030732/60d4c7bd-81f6-4429-afa0-782887b08f81" width="220px">
   <img align= "left" src="https://github.com/shraddhagaudani/todo_list_app/assets/122030732/addc5832-fafb-4fb7-8ccc-ba581d859c2a" width="220px">
 
-  <img align= "left" src="https://github.com/shraddhagaudani/todo_list_app/assets/122030732/ec368d0d-daeb-4d08-b004-fc4bc645aeae" width="220px">
-  <img align= "left" src="https://github.com/shraddhagaudani/todo_list_app/assets/122030732/0530ba21-1b8a-4148-9398-24b0977b4858" width="220px">
+  <img align= "left" src="https://github.com/shraddhagaudani/todo_list_app/assets/122030732/81a6aac7-ee60-4c05-955d-91fbee188c84" width="220px">
+  <img align= "left" src="https://github.com/shraddhagaudani/todo_list_app/assets/122030732/43a3c7e6-c9a6-4e2b-8002-f391a9721b73" width="220px">
   <img align= "left" src="https://github.com/shraddhagaudani/todo_list_app/assets/122030732/9670b11e-5a67-4537-adc3-ddca2560c279" width="220px">
 
   <img align= "left" src="https://github.com/shraddhagaudani/todo_list_app/assets/122030732/ffcccbb8-3d31-49e5-b567-e27fce153f94" width="220px">
