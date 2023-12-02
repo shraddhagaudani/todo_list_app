@@ -315,7 +315,7 @@ class _Home_pageState extends State<Home_page> {
                         child: Row(
                           children: [
                             const Text(
-                              "Spending type :",
+                              "Project Status :",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,

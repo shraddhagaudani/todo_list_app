@@ -26,7 +26,7 @@ class _Calender_information_pageState extends State<Calender_information_page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Calender information"),
+        title: const Text("Calender information"),
       ),
       body: FutureBuilder(
           future: allCalenderInformation,

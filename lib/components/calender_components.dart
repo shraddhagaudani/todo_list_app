@@ -168,7 +168,6 @@ class _calender_componentState extends State<calender_component> {
                         context: context,
                         initialTime: initialTime,
                       );
-
                       setState(
                         () {
                           time = pickedTime;
@@ -185,7 +184,6 @@ class _calender_componentState extends State<calender_component> {
                 ],
               ),
             ),
-
             Padding(
               padding: EdgeInsets.all(16),
               child: TextFormField(
